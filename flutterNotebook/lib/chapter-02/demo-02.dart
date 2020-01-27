@@ -25,32 +25,43 @@ class NewRoute extends StatelessWidget {
       appBar: AppBar(
         title: Text('New Route Page'),
       ),
-      body: Center(child: Text('This is new route'),),
+      body: Center(
+        child: Text('This is new route'),
+      ),
     );
   }
 }
 
 // 路由传递参数实例
 class TipRoute extends StatelessWidget {
-  TipRoute({Key key, @required this.text,}) : super(key: key);
+  TipRoute({
+    Key key,
+    @required this.text,
+  }) : super(key: key);
   final String text;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: new Text('提示'),),
-      body: Padding(padding: EdgeInsets.all(18), child: Center(
-        child: Column(children: <Widget>[
-          new Text(text),
-          new RaisedButton(
-            child: Text("Return"),
-            onPressed: () => Navigator.pop(context, "I'm return value"),
-          )
-        ],),
-      ),),
+      appBar: AppBar(
+        title: new Text('提示'),
+      ),
+      body: Padding(
+        padding: EdgeInsets.all(18),
+        child: Center(
+          child: Column(
+            children: <Widget>[
+              new Text(text),
+              new RaisedButton(
+                child: Text("Return"),
+                onPressed: () => Navigator.pop(context, "I'm return value"),
+              )
+            ],
+          ),
+        ),
+      ),
     );
   }
 }
-
 
 class MyHomePage extends StatefulWidget {
   MyHomePage({Key key, this.title}) : super(key: key);
@@ -100,11 +111,12 @@ class _MyHomePageState extends State<MyHomePage> {
               child: new Text('路由传值实例'),
               textColor: Colors.blue,
               onPressed: () async {
-                var result = await Navigator.push(context, 
-                  MaterialPageRoute(builder: (context) {
-                    return TipRoute(text: "我是提示XXX",);
-                  })
-                );
+                var result = await Navigator.push(context,
+                    MaterialPageRoute(builder: (context) {
+                  return TipRoute(
+                    text: "我是提示XXX",
+                  );
+                }));
                 print("路由返回值：$result");
               },
             )
