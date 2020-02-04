@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_shop/service/service_method.dart';
+
 import 'package:flutter_swiper/flutter_swiper.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+// import 'package:url_launcher/url_launcher.dart';
 
+import '../service/service_method.dart';
 import '../tool/parseJson.dart';
 
 class HomePage extends StatefulWidget {
@@ -28,13 +30,17 @@ class _HomePageState extends State<HomePage> {
             // for (var i = 0; i < homeDataList.length; i++) {
             //   print('imgUrl:' + homeDataList[i].imgUrl + '\n');
             // }
+            String leaderImager = homeDataList[0].imgUrl;
+            String leaderPhone = '18754565971';
             return Column(
               children: <Widget>[
                 Flexible(
                   child: ListView(
                     children: <Widget> [
                       SwiperDiy(swiperDataList: homeDataList),
-                      TopNavigator(navigatorList: homeDataList,)
+                      TopNavigator(navigatorList: homeDataList,),
+                      // AdBanner()   // 广告组建
+                      LeaderPhone(leaderImage: leaderImager, leaderPhone: leaderPhone,),
                     ]
                   ),
                 ),
@@ -50,6 +56,7 @@ class _HomePageState extends State<HomePage> {
 
 }
 
+// 顶上轮波图
 class SwiperDiy extends StatelessWidget {
   const SwiperDiy({Key key, this.swiperDataList}) : super(key: key);
   final List<GoodsInfo> swiperDataList;
@@ -72,6 +79,7 @@ class SwiperDiy extends StatelessWidget {
   }
 }
 
+// 分类导航栏
 class TopNavigator extends StatelessWidget {
   const TopNavigator({Key key, this.navigatorList}) : super(key: key);
   final List<GoodsInfo> navigatorList;
@@ -98,6 +106,49 @@ class TopNavigator extends StatelessWidget {
         children: navigatorList.map((item) {
           return _gridViewItemUI(context, item);
         }).toList(),
+      ),
+    );
+  }
+}
+
+// 广告图片
+class AdBanner extends StatelessWidget {
+  const AdBanner({Key key, this.advertesPic}) : super(key: key);
+  final String advertesPic;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      child: Image.network(advertesPic),
+    );
+  }
+}
+
+// 店长电话模块
+class LeaderPhone extends StatelessWidget {
+  final String leaderImage; //店长图片
+  final String leaderPhone; //店长电话
+
+  LeaderPhone({Key key, this.leaderImage,this.leaderPhone}) : super(key: key);
+
+  // 不知为何，不能打电话跳转
+  // void _launchUrl() async {
+  //   String url = 'tel:'+leaderPhone;
+  //   if (await canLaunch(url)) {
+  //     await launch(url);
+  //   } else {
+  //     throw '不能访问Could not launch $url';
+  //   }
+  // }
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      height: ScreenUtil().setHeight(200),
+      width: ScreenUtil().setWidth(750),
+      child: InkWell(
+        onTap: () {},
+        child: Image.network(leaderImage, fit: BoxFit.cover,),
       ),
     );
   }
