@@ -1,10 +1,13 @@
 // 商品详情类
+import 'dart:convert';
+
 class GoodsInfo {
   String id; // 商品ID
   String goodsName; // 商品名称
   String goodsClass; // 商品分类
   String imgUrl; // 广告图地址
   String goodsPrice;
+  String lastPrice;
   String saleCount; // 总销量
   String allDayCount; // 全天销量
   String tjRemark; // 文案
@@ -15,6 +18,7 @@ class GoodsInfo {
     this.goodsClass,
     this.imgUrl,
     this.goodsPrice,
+    this.lastPrice,
     this.saleCount,
     this.allDayCount,
     this.tjRemark,
@@ -27,6 +31,7 @@ class GoodsInfo {
         goodsClass: json['GoodsClass'],
         imgUrl: json['ImgUrl'],
         goodsPrice: json['GoodsPrice'].toString(),
+        lastPrice: json['LastPrice'].toString(),
         saleCount: json['SaleCount'].toString(),
         allDayCount: json['AllDayCount'].toString(),
         tjRemark: json['TjRemark']);
