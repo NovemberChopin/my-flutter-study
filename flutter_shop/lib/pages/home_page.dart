@@ -24,14 +24,19 @@ class _HomePageState extends State<HomePage> {
           if(snapshot.hasData) {
             var swiperGoodsData = snapshot.data;
             HomePageData _homePageData = HomePageData.fromJson(swiperGoodsData);
-            List<GoodsInfo> swiperDataList = _homePageData.indexes;
-            // for (var i = 0; i < swiperDataList.length; i++) {
-            //   print('imgUrl:' + swiperDataList[i].imgUrl + '\n');
+            List<GoodsInfo> homeDataList = _homePageData.indexes;
+            // for (var i = 0; i < homeDataList.length; i++) {
+            //   print('imgUrl:' + homeDataList[i].imgUrl + '\n');
             // }
             return Column(
               children: <Widget>[
                 Flexible(
-                  child: SwiperDiy(swiperDataList: swiperDataList,),
+                  child: ListView(
+                    children: <Widget> [
+                      SwiperDiy(swiperDataList: homeDataList),
+                      TopNavigator(navigatorList: homeDataList,)
+                    ]
+                  ),
                 ),
               ],
             );
@@ -51,8 +56,7 @@ class SwiperDiy extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    //设置适配尺寸 (填入设计稿中设备的屏幕尺寸) 此处假如设计稿是按iPhone6的尺寸设计的(iPhone6 750*1334)
-    ScreenUtil.init(context, width: 750, height: 1334, allowFontScaling: false);
+    
     return Container(
       height: ScreenUtil().setHeight(333),
       width: ScreenUtil().setWidth(750),
@@ -63,6 +67,37 @@ class SwiperDiy extends StatelessWidget {
         itemCount: swiperDataList.length,
         pagination: new SwiperPagination(),
         autoplay: true,
+      ),
+    );
+  }
+}
+
+class TopNavigator extends StatelessWidget {
+  const TopNavigator({Key key, this.navigatorList}) : super(key: key);
+  final List<GoodsInfo> navigatorList;
+
+  Widget _gridViewItemUI(BuildContext context, GoodsInfo item) {
+    return InkWell(
+      onTap: () {print('点击了导航');},
+      child: Column(
+        children: <Widget> [
+          Image.network(item.imgUrl, width: ScreenUtil().setWidth(95)),
+          Text(item.goodsClass)
+        ]
+      ),
+    );
+  }
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      height: ScreenUtil().setHeight(320),
+      padding:EdgeInsets.all(3.0),
+      child: GridView.count(
+        crossAxisCount: 5,
+        padding: EdgeInsets.all(4.0),
+        children: navigatorList.map((item) {
+          return _gridViewItemUI(context, item);
+        }).toList(),
       ),
     );
   }

@@ -13,7 +13,7 @@ Future getHomePageContent() async{
     var formData = {
       'appkey': '5wfidtll6t',
       'page': '1',
-      'pagesize': 5,
+      'pagesize': 10,
       'cid': 3
     };
     print(servicePath['homePageContext']);
@@ -27,7 +27,7 @@ Future getHomePageContent() async{
       throw Exception('后端接口出现异常，请检测代码和服务器情况.........');
     }
   }catch(e){
-    return print('ERROR:======>${e}');
+    return print('ERROR:======>$e');
   }
 
 }
