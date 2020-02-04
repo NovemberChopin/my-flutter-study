@@ -11,8 +11,10 @@ Future getHomePageContent() async{
     // dio.options.contentType=ContentType.parse("application/x-www-form-urlencoded");
     // var formData = {'lon':'115.02932','lat':'35.76189'};
     var formData = {
-      'key': 'ec12d93e5d98840a0e7a74422aee6296',
-      'dtype': 'json'
+      'appkey': '5wfidtll6t',
+      'page': '1',
+      'pagesize': 5,
+      'cid': 3
     };
     print(servicePath['homePageContext']);
     response = await dio.get(

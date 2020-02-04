@@ -1,4 +1,3 @@
-const serviceUrl = 'http://apis.juhe.cn/goodbook/';
-const servicePath = {
-  'homePageContext': serviceUrl + 'catalog'
-};
+// const serviceUrl = 'http://apis.juhe.cn/goodbook/';
+const serviceUrl = 'http://api.xuandan.com/';
+const servicePath = {'homePageContext': serviceUrl + 'DataApi/index'};
