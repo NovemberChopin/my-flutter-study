@@ -5,6 +5,7 @@ import './top_navigator.dart';
 // import './ad_banner.dart';
 import './leader_phone.dart';
 import './recommend.dart';
+import './floor_goods.dart';
 
 import '../../service/service_method.dart';
 import '../../tool/parseJson.dart';
@@ -48,7 +49,9 @@ class _HomePageState extends State<HomePage> with AutomaticKeepAliveClientMixin 
                       TopNavigator(navigatorList: homeDataList,),
                       // AdBanner()   // 广告组建
                       LeaderPhone(leaderImage: leaderImager, leaderPhone: leaderPhone,),
-                      Recommend(recommendList: homeDataList,)
+                      Recommend(recommendList: homeDataList,),
+                      FloorTitle(pictureAddress: homeDataList[0].imgUrl,),
+                      FloorContent(floorGoodsList: homeDataList,)
                     ]
                   ),
                 ),
