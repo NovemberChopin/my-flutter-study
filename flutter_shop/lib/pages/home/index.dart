@@ -11,7 +11,7 @@ import './floor_goods.dart';
 import './hot_goods.dart';
 
 import '../../service/service_method.dart';
-import '../../tool/parseJson.dart';
+import '../../model/home_model.dart';
 
 class HomePage extends StatefulWidget {
   HomePage({Key key}) : super(key: key);
@@ -36,7 +36,7 @@ class _HomePageState extends State<HomePage> with AutomaticKeepAliveClientMixin 
       appBar: AppBar(title: Text('选单网')),
       body: FutureBuilder(
         // 获取第 1 页， 10 条数据
-        future: getHomePageContent(page, 10),
+        future: getHomePageData(page),
         builder: (context, snapshot) {
           if(snapshot.hasData) {
             var swiperGoodsData = snapshot.data;
@@ -69,7 +69,7 @@ class _HomePageState extends State<HomePage> with AutomaticKeepAliveClientMixin 
               },
               onLoad: () async {
                 print('加载回调函数');
-                getHomePageContent(page, 4).then((value) {
+                getHotGoodsData(page).then((value) {
                   HomePageData _homePageData = HomePageData.fromJson(value);
                   List<GoodsInfo> homeDataList = _homePageData.indexes;
                   setState(() {

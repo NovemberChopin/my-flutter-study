@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import '../../tool/parseJson.dart';
+import '../../model/home_model.dart';
 
 
 // 首页推荐模块
