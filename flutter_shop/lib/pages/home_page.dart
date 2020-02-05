@@ -14,10 +14,15 @@ class HomePage extends StatefulWidget {
   _HomePageState createState() => _HomePageState();
 }
 
-class _HomePageState extends State<HomePage> {
+class _HomePageState extends State<HomePage> with AutomaticKeepAliveClientMixin {
   
   @override
+  bool get wantKeepAlive => true;
+
+  @override
   Widget build(BuildContext context) {
+    super.build(context);
+
     return Scaffold(
       appBar: AppBar(title: Text('选单网')),
       body: FutureBuilder(
@@ -54,7 +59,6 @@ class _HomePageState extends State<HomePage> {
       ),
     );
   }
-
 }
 
 // 顶上轮波图
@@ -164,7 +168,7 @@ class Recommend extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-       // height: ScreenUtil().setHeight(450),
+      //  height: ScreenUtil().setHeight(450),
        margin: EdgeInsets.only(top: 10.0),
        child: Column(
          children: <Widget>[
@@ -195,7 +199,7 @@ class Recommend extends StatelessWidget {
 
   Widget _recommedList(){
     return Container(
-      height: ScreenUtil().setHeight(370),
+      height: ScreenUtil().setHeight(350),
       child: ListView.builder(
         scrollDirection: Axis.horizontal,
         itemCount: recommendList.length,
@@ -216,7 +220,7 @@ class Recommend extends StatelessWidget {
         decoration:BoxDecoration(
           color:Colors.white,
           border:Border(
-            left: BorderSide(width:1,color:Colors.black12)
+            left: BorderSide(width:1.5,color:Colors.black12)
           )
         ),
         child: Column(
@@ -236,3 +240,5 @@ class Recommend extends StatelessWidget {
     );
   }
 }
+
+

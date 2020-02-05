@@ -1,5 +1,4 @@
 // 商品详情类
-import 'dart:convert';
 
 class GoodsInfo {
   String id; // 商品ID
