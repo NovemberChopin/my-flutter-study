@@ -2,7 +2,7 @@ import 'package:dio/dio.dart';
 import 'dart:async';
 import '../config/service_url.dart';
 
-Future getHomePageContent() async{
+Future getHomePageContent(int page, int pagesize) async{
 
   try{
     print('开始获取首页数据...............');
@@ -12,8 +12,8 @@ Future getHomePageContent() async{
     // var formData = {'lon':'115.02932','lat':'35.76189'};
     var formData = {
       'appkey': '5wfidtll6t',
-      'page': '1',
-      'pagesize': 10,
+      'page': page,
+      'pagesize': pagesize,
       'cid': 3
     };
     print(servicePath['homePageContext']);

@@ -12,7 +12,10 @@ class FloorTitle extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       height: 200.0,
-      child: Image.network(pictureAddress, fit: BoxFit.cover,),
+      child: InkWell(
+        onTap: () {},
+        child: Image.network(pictureAddress, fit: BoxFit.cover,),
+      )
     );
   }
 }
@@ -62,7 +65,7 @@ class FloorContent extends StatelessWidget {
       width: ScreenUtil().setWidth(375),
       child: InkWell(
         onTap: () {print('点击楼层商品');},
-        child: Image.network(goods.imgUrl),
+        child: Image.network(goods.imgUrl,),
       ),
     );
   }

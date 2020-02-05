@@ -6,6 +6,7 @@ import './top_navigator.dart';
 import './leader_phone.dart';
 import './recommend.dart';
 import './floor_goods.dart';
+import './hot_goods.dart';
 
 import '../../service/service_method.dart';
 import '../../tool/parseJson.dart';
@@ -29,7 +30,8 @@ class _HomePageState extends State<HomePage> with AutomaticKeepAliveClientMixin 
     return Scaffold(
       appBar: AppBar(title: Text('选单网')),
       body: FutureBuilder(
-        future: getHomePageContent(),
+        // 获取第 1 页， 10 条数据
+        future: getHomePageContent(1, 10),
         builder: (context, snapshot) {
           if(snapshot.hasData) {
             var swiperGoodsData = snapshot.data;
@@ -40,22 +42,19 @@ class _HomePageState extends State<HomePage> with AutomaticKeepAliveClientMixin 
             // }
             String leaderImager = homeDataList[0].imgUrl;
             String leaderPhone = '18754565971';
-            return Column(
-              children: <Widget>[
-                Flexible(
-                  child: ListView(
-                    children: <Widget> [
-                      SwiperDiy(swiperDataList: homeDataList),
-                      TopNavigator(navigatorList: homeDataList,),
-                      // AdBanner()   // 广告组建
-                      LeaderPhone(leaderImage: leaderImager, leaderPhone: leaderPhone,),
-                      Recommend(recommendList: homeDataList,),
-                      FloorTitle(pictureAddress: homeDataList[0].imgUrl,),
-                      FloorContent(floorGoodsList: homeDataList,)
-                    ]
-                  ),
-                ),
-              ],
+            return SingleChildScrollView(
+              child: Column(
+                children: <Widget> [
+                  SwiperDiy(swiperDataList: homeDataList),
+                  TopNavigator(navigatorList: homeDataList,),
+                  // AdBanner()   // 广告组建
+                  LeaderPhone(leaderImage: leaderImager, leaderPhone: leaderPhone,),
+                  Recommend(recommendList: homeDataList,),
+                  FloorTitle(pictureAddress: homeDataList[0].imgUrl,),
+                  FloorContent(floorGoodsList: homeDataList,),
+                  HotGoods(),
+                ]
+              ),
             );
           } else {
             return Center(child: Text('正在加载。。。'));
