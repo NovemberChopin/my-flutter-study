@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'package:flutter_easyrefresh/easy_refresh.dart';
+
 import './swiper_diy.dart';
 import './top_navigator.dart';
 // import './ad_banner.dart';
@@ -20,6 +22,9 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> with AutomaticKeepAliveClientMixin {
   
+  int page = 1;   // 火爆专区页面
+  List<GoodsInfo> hotGoodsList = [];
+
   @override
   bool get wantKeepAlive => true;
 
@@ -31,7 +36,7 @@ class _HomePageState extends State<HomePage> with AutomaticKeepAliveClientMixin 
       appBar: AppBar(title: Text('选单网')),
       body: FutureBuilder(
         // 获取第 1 页， 10 条数据
-        future: getHomePageContent(1, 10),
+        future: getHomePageContent(page, 10),
         builder: (context, snapshot) {
           if(snapshot.hasData) {
             var swiperGoodsData = snapshot.data;
@@ -42,8 +47,8 @@ class _HomePageState extends State<HomePage> with AutomaticKeepAliveClientMixin 
             // }
             String leaderImager = homeDataList[0].imgUrl;
             String leaderPhone = '18754565971';
-            return SingleChildScrollView(
-              child: Column(
+            return EasyRefresh(
+              child: ListView(
                 children: <Widget> [
                   SwiperDiy(swiperDataList: homeDataList),
                   TopNavigator(navigatorList: homeDataList,),
@@ -52,10 +57,29 @@ class _HomePageState extends State<HomePage> with AutomaticKeepAliveClientMixin 
                   Recommend(recommendList: homeDataList,),
                   FloorTitle(pictureAddress: homeDataList[0].imgUrl,),
                   FloorContent(floorGoodsList: homeDataList,),
-                  HotGoods(),
+                  HotGoods(page: page, hotDataList: hotGoodsList,),
                 ]
               ),
+              onRefresh: () async {
+                print('这是刷新回调函数');
+                setState(() {
+                  hotGoodsList = [];
+                  page++;
+                });
+              },
+              onLoad: () async {
+                print('加载回调函数');
+                getHomePageContent(page, 4).then((value) {
+                  HomePageData _homePageData = HomePageData.fromJson(value);
+                  List<GoodsInfo> homeDataList = _homePageData.indexes;
+                  setState(() {
+                    hotGoodsList.addAll(homeDataList);
+                    page++;
+                  });
+                });
+              },
             );
+              
           } else {
             return Center(child: Text('正在加载。。。'));
           }

@@ -1,42 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import '../../service/service_method.dart';
 import '../../tool/parseJson.dart';
 
 // 火爆专区部分
-class HotGoods extends StatefulWidget {
-  HotGoods({Key key}) : super(key: key);
+class HotGoods extends StatelessWidget {
+  HotGoods({Key key, this.page, this.hotDataList}) : super(key: key);
 
-  @override
-  _HotGoodsState createState() => _HotGoodsState();
-}
-
-class _HotGoodsState extends State<HotGoods> {
-  int page = 1;
-  List<GoodsInfo> hotDataList = [];
-
-  void _getHotGoods() {
-    getHomePageContent(page, 4).then((value) {
-      HomePageData _homePageData = HomePageData.fromJson(value);
-      List<GoodsInfo> homeDataList = _homePageData.indexes;
-      setState(() {
-        hotDataList = homeDataList;
-        page++;
-      });
-    });
-  }
-
-  //火爆专区标题
-  Widget hotTitle = Container(
-    margin: EdgeInsets.only(top: 10.0),
-    padding: EdgeInsets.all(5.0),
-    alignment: Alignment.center,
-    decoration: BoxDecoration(
-        color: Colors.white,
-        border: Border(bottom: BorderSide(width: 0.5, color: Colors.black12))),
-    child: Text('火爆专区'),
-  );
+  final int page;
+  final List<GoodsInfo> hotDataList;
 
   //火爆专区子项
   Widget _wrapList(List<GoodsInfo> hotGoodsList) {
@@ -89,17 +61,19 @@ class _HotGoodsState extends State<HotGoods> {
   }
 
   @override
-  void initState() {
-    super.initState();
-    _getHotGoods();
-  }
-
-  @override
   Widget build(BuildContext context) {
     return Container(
       child: Column(
         children: <Widget>[
-          hotTitle,
+          Container(
+            margin: EdgeInsets.only(top: 10.0),
+            padding: EdgeInsets.all(5.0),
+            alignment: Alignment.center,
+            decoration: BoxDecoration(
+                color: Colors.white,
+                border: Border(bottom: BorderSide(width: 0.5, color: Colors.black12))),
+            child: Text('火爆专区'),
+          ),
           _wrapList(hotDataList)
         ],
       ),

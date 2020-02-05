@@ -5,7 +5,10 @@ import '../config/service_url.dart';
 Future getHomePageContent(int page, int pagesize) async{
 
   try{
-    print('开始获取首页数据...............');
+    if (pagesize == 10)
+      print('。。。正在获取首页数据...............');
+    else
+      print('。。。正在加载热卖商品数据...............');
     Response response;
     Dio dio = new Dio();
     // dio.options.contentType=ContentType.parse("application/x-www-form-urlencoded");
