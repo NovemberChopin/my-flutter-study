@@ -97,19 +97,25 @@ class _MyAppState extends State<MyApp> {
       "error_code": 0
     };
 
-    CategoryModel categoryModel = CategoryModel.fromJson(jsonData);
-    List<Category> category = categoryModel.categoryList;
+    CategoryList categoryList = CategoryList.fromJson(jsonData);
+    List<CategoryModel> category = categoryList.categoryList;
 
     for (var i = 0; i < category.length; i++) {
       print('category: ' + category[i].catelog + '\n');
     }
   }
 
+  List<CategoryModel> list = [];
   @override
   void initState() {
     super.initState();
     _fun();
     _testCategoryModel();
+    print('+++++++++');
+    setState(() {
+      list = getCategroyList();
+      print(list.length);
+    });
   }
 
   @override

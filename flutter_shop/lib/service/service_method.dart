@@ -38,6 +38,18 @@ Future getCategoryList() {
   return requestGet(servicePath['categoryList'], param: queryParameters);
 }
 
+// 获取分类页列表商品数据
+Future getClassGoodsData(int page, int cid) {
+  print('获取首页数据...............');
+  var queryParameters = {
+    'appkey': '5wfidtll6t',
+    'page': page,
+    'pagesize': 8,
+    'cid': cid         // 商品类型
+  };
+  return requestGet(servicePath['homePageContext'], param: queryParameters);
+}
+
 // 通用 Get 接口
 Future requestGet(String url, {Map param}) async{
   try{

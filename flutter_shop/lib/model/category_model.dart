@@ -1,42 +1,61 @@
 // 分类 Modle
 
-import 'package:flutter/foundation.dart';
+class SubCategoryModel {
+  String id;
+  String subCatelog;
 
-class Category {
+  SubCategoryModel({this.id, this.subCatelog});
+}
+class CategoryModel {
   String id;
   String catelog;
+  List<SubCategoryModel> subCategoryList;
 
-  Category({this.id, this.catelog});
+  CategoryModel({this.id, this.catelog, this.subCategoryList});
 
-  factory Category.fromJson(Map<String, dynamic> json) {
-    return Category(
-      id: json['id'],
-      catelog: json['category'],
+  factory CategoryModel.fromJson(Map<String, dynamic> json) {
+    // 根据父类生成字类
+    String id = json['id'];
+    String catelog = json['category'];
+    List<SubCategoryModel> subList = [];
+
+    for (var i = 0; i < 5; i++) {
+      SubCategoryModel subCategory = SubCategoryModel(
+        id: id,
+        subCatelog: "$catelog$i"
+      );
+      subList.add(subCategory);
+    }
+
+    return CategoryModel(
+      id: id,
+      catelog: catelog,
+      subCategoryList: subList
     );
   }
 }
 
-class CategoryModel {
-  List<Category> categoryList; // 分类列表
+class CategoryList {
+  List<CategoryModel> categoryList; // 分类列表
 
-  CategoryModel({this.categoryList});
+  CategoryList({this.categoryList});
 
-  factory CategoryModel.fromJson(Map<String, dynamic> json) {
+  factory CategoryList.fromJson(Map<String, dynamic> json) {
     var tempList = json['result'] as List;
-    List<Category> categoryList =
-        tempList.map((e) => Category.fromJson(e)).toList();
+    List<CategoryModel> categoryList =
+        tempList.map((e) => CategoryModel.fromJson(e)).toList();
 
-    return CategoryModel(categoryList: categoryList);
+    return CategoryList(categoryList: categoryList);
   }
 }
 
 // 返回一级分类内容
-List<Category> getCategroyList() {
+List<CategoryModel> getCategroyList() {
   var jsonCategoryData = {
     "resultcode": "200",
     "reason": "success",
     "result": [
-      {"id": "0", "category": "全部"},
+      // {"id": "0", "category": "全部"},
       {"id": "1", "category": "女装"},
       {"id": "2", "category": "男装"},
       {"id": "3", "category": "内衣"},
@@ -50,6 +69,6 @@ List<Category> getCategroyList() {
     ],
     "error_code": 0
   };
-  CategoryModel categoryModel = CategoryModel.fromJson(jsonCategoryData);
-  return categoryModel.categoryList;
+  CategoryList categoryList = CategoryList.fromJson(jsonCategoryData);
+  return categoryList.categoryList;
 }

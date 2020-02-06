@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-
+import 'package:flutter_shop/provide/sub_category.dart';
+import 'package:provide/provide.dart';
 import '../../model/category_model.dart';
 
 class LeftCategoryNav extends StatefulWidget {
@@ -11,17 +12,28 @@ class LeftCategoryNav extends StatefulWidget {
 }
 
 class _LeftCategoryNavState extends State<LeftCategoryNav> {
-  List<Category> list = [];
+  List<CategoryModel> list = [];
+  var listIndex = 0;  // 大类索引
 
   Widget _leftInkWell(int index) {
+    bool isClick = false;
+    isClick = (index == listIndex) ? true:false;
     if(list.length != 0) {
       return InkWell(
-        onTap: () {},
+        onTap: () {
+          setState(() {
+            listIndex = index;
+          });
+          // 修改二级分类的状态
+          var subList = list[index].subCategoryList;
+          Provide.value<SubCategoryProvider>(context).getSubCategoryList(subList);
+        },
         child: Container(
           height: ScreenUtil().setHeight(100),
           padding: EdgeInsets.only(left:10, top: 20),
           decoration: BoxDecoration(
-            color: Colors.white,
+            // 当前类被点击，显示黑色
+            color: isClick? Colors.pink[400] : Colors.white,
             border: Border(
               bottom: BorderSide(width: 1, color: Colors.black12)
             )
@@ -44,6 +56,9 @@ class _LeftCategoryNavState extends State<LeftCategoryNav> {
     setState(() {
       list = getCategroyList();
     });
+    // 修改子类状态
+    // Provide.value<SubCategoryProvider>(context)
+    //   .getSubCategoryList(list[0].subCategoryList);
   }
   
   @override
