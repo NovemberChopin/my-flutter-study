@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import './left_category_nav.dart';
+import './right_category_nav.dart';
 
 class CategoryPage extends StatefulWidget {
   CategoryPage({Key key}) : super(key: key);
@@ -19,6 +20,11 @@ class _CategoryPageState extends State<CategoryPage> {
         child: Row(
           children: <Widget>[
             LeftCategoryNav(),
+            Column(
+              children: <Widget>[
+                RightCategoryNav(),
+              ],
+            )
           ],
         ),
       )

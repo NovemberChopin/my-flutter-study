@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import '../../service/service_method.dart';
 import '../../model/category_model.dart';
 
 class LeftCategoryNav extends StatefulWidget {
@@ -35,12 +34,15 @@ class _LeftCategoryNavState extends State<LeftCategoryNav> {
   }
 
   void _getCategory() async {
-    getCategoryList().then((value) {
-      CategoryModel categoryModel = CategoryModel.fromJson(value);
-      List<Category> categoryList = categoryModel.categoryList;
-      setState(() {
-        list = categoryList;
-      });
+    // getCategoryList().then((value) {
+    //   CategoryModel categoryModel = CategoryModel.fromJson(value);
+    //   List<Category> categoryList = categoryModel.categoryList;
+    //   setState(() {
+    //     list = categoryList;
+    //   });
+    // });
+    setState(() {
+      list = getCategroyList();
     });
   }
   
