@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import '../../model/home_model.dart';
+import '../../model/goods_model.dart';
 
 // 顶上轮波图
 class SwiperDiy extends StatelessWidget {

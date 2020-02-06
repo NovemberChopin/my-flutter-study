@@ -55,7 +55,7 @@ List<CategoryModel> getCategroyList() {
     "resultcode": "200",
     "reason": "success",
     "result": [
-      // {"id": "0", "category": "全部"},
+      {"id": "0", "category": "全部"},
       {"id": "1", "category": "女装"},
       {"id": "2", "category": "男装"},
       {"id": "3", "category": "内衣"},

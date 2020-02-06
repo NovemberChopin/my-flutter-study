@@ -2,7 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_shop/model/home_model.dart';
+import 'package:flutter_shop/model/goods_model.dart';
 
 class FloorTitle extends StatelessWidget {
   const FloorTitle({Key key, this.pictureAddress}) : super(key: key);

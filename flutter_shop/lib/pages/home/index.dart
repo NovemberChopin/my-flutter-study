@@ -11,7 +11,7 @@ import './floor_goods.dart';
 import './hot_goods.dart';
 
 import '../../service/service_method.dart';
-import '../../model/home_model.dart';
+import '../../model/goods_model.dart';
 
 class HomePage extends StatefulWidget {
   HomePage({Key key}) : super(key: key);

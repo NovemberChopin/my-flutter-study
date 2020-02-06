@@ -34,9 +34,9 @@ class _LeftCategoryNavState extends State<LeftCategoryNav> {
           decoration: BoxDecoration(
             // 当前类被点击，显示黑色
             color: isClick? Colors.pink[400] : Colors.white,
-            border: Border(
-              bottom: BorderSide(width: 1, color: Colors.black12)
-            )
+            // border: Border(
+            //   bottom: BorderSide(width: 1, color: Colors.black12)
+            // )
           ),
           child: Text(list[index].catelog, style: TextStyle(fontSize: ScreenUtil().setSp(28)),),
         ),

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import '../../model/home_model.dart';
+import '../../model/goods_model.dart';
 
 // 火爆专区部分
 class HotGoods extends StatelessWidget {

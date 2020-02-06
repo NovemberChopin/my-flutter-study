@@ -40,7 +40,7 @@ Future getCategoryList() {
 
 // 获取分类页列表商品数据
 Future getClassGoodsData(int page, int cid) {
-  print('获取首页数据...............');
+  print('获取分类页商品数据...............');
   var queryParameters = {
     'appkey': '5wfidtll6t',
     'page': page,
