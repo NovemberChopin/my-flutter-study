@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_shop/provide/sub_category.dart';
+// import 'package:flutter_shop/provide/sub_category.dart';
 import '../../provide/category_goods_list.dart';
 import 'package:provide/provide.dart';
 import '../../model/category_model.dart';

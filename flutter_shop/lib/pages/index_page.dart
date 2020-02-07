@@ -5,7 +5,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import './cart_page.dart';
 import './catagroy/index.dart';
 import './member_page.dart';
-import './home/index.dart';
+// import './home/index.dart';
+import './home/temp.dart';
 
 class IndexPage extends StatefulWidget {
   IndexPage({Key key}) : super(key: key);
@@ -38,7 +39,7 @@ class _IndexPageState extends State<IndexPage> {
   ];
 
   final List<Widget> tabBodies = [
-    HomePage(),
+    HomePageTemp(),
     CategoryPage(),
     CartPage(),
     MemberPage()
