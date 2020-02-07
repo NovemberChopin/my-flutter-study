@@ -21,12 +21,13 @@ class _CategoryPageState extends State<CategoryPage> {
         child: Row(
           children: <Widget>[
             LeftCategoryNav(),
-            Column(
-              children: <Widget>[
-                RightCategoryNav(),
-                CategoryGoodsList(),
-              ],
-            )
+            CategoryGoodsList()
+            // Column(
+            //   children: <Widget>[
+            //     RightCategoryNav(),
+            //     CategoryGoodsList(),
+            //   ],
+            // )
           ],
         ),
       )

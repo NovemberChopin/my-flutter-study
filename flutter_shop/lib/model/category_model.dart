@@ -6,31 +6,48 @@ class SubCategoryModel {
 
   SubCategoryModel({this.id, this.subCatelog});
 }
+
+// 有嵌套子类情况的解析（暂时不用，二级导航太复杂）
+// class CategoryModel {
+//   String id;
+//   String catelog;
+//   List<SubCategoryModel> subCategoryList;
+
+//   CategoryModel({this.id, this.catelog, this.subCategoryList});
+
+//   factory CategoryModel.fromJson(Map<String, dynamic> json) {
+//     // 根据父类生成字类
+//     String id = json['id'];
+//     String catelog = json['category'];
+//     List<SubCategoryModel> subList = [];
+
+//     for (var i = 0; i < 5; i++) {
+//       SubCategoryModel subCategory = SubCategoryModel(
+//         id: id,
+//         subCatelog: "$catelog$i"
+//       );
+//       subList.add(subCategory);
+//     }
+
+//     return CategoryModel(
+//       id: id,
+//       catelog: catelog,
+//       subCategoryList: subList
+//     );
+//   }
+// }
+
 class CategoryModel {
   String id;
   String catelog;
-  List<SubCategoryModel> subCategoryList;
 
-  CategoryModel({this.id, this.catelog, this.subCategoryList});
+  CategoryModel({this.id, this.catelog});
 
   factory CategoryModel.fromJson(Map<String, dynamic> json) {
-    // 根据父类生成字类
-    String id = json['id'];
-    String catelog = json['category'];
-    List<SubCategoryModel> subList = [];
-
-    for (var i = 0; i < 5; i++) {
-      SubCategoryModel subCategory = SubCategoryModel(
-        id: id,
-        subCatelog: "$catelog$i"
-      );
-      subList.add(subCategory);
-    }
 
     return CategoryModel(
-      id: id,
-      catelog: catelog,
-      subCategoryList: subList
+      id: json['id'],
+      catelog: json['category'],
     );
   }
 }

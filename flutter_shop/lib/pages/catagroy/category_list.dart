@@ -1,8 +1,8 @@
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:provide/provide.dart';
 import 'package:flutter/material.dart';
-import '../../service/service_method.dart';
+import 'package:provide/provide.dart';
 import '../../model/goods_model.dart';
+import '../../provide/category_goods_list.dart';
 
 class CategoryGoodsList extends StatefulWidget {
   CategoryGoodsList({Key key}) : super(key: key);
@@ -12,53 +12,42 @@ class CategoryGoodsList extends StatefulWidget {
 }
 
 class _CategoryGoodsListState extends State<CategoryGoodsList> {
-  List<GoodsInfo> list = [];
-  void _getCategoryGoodsList() async {
-    await getClassGoodsData(1, 2).then((value) {
-      HomePageData categoryGoodsData = HomePageData.fromJson(value);
-      List<GoodsInfo> goodsCategoryList = categoryGoodsData.indexes;
-      setState(() {
-        list = goodsCategoryList;
-      });
-    });
-  }
   
   @override
   void initState() { 
     super.initState();
-    _getCategoryGoodsList();
   }
 
-  Widget _goodsImage(index) {
+  Widget _goodsImage(List<GoodsInfo> newList, index) {
     return Container(
       width: ScreenUtil().setWidth(200),
-      child: Image.network(list[index].imgUrl),
+      child: Image.network(newList[index].imgUrl),
     );
   }
-  Widget _goodsName(index) {
+  Widget _goodsName(List<GoodsInfo> newList, index) {
     return Container(
       padding: EdgeInsets.all(5.0),
       width: ScreenUtil().setWidth(370),
       child: Text(
-        list[index].goodsName,
+        newList[index].goodsName,
         maxLines: 2,
         overflow: TextOverflow.ellipsis,
         style: TextStyle(fontSize: ScreenUtil().setSp(28)),
       ),
     );
   }
-  Widget _goodsPrice(index) {
+  Widget _goodsPrice(List<GoodsInfo> newList, index) {
     return Container(
       margin: EdgeInsets.only(top: 20.0),
       width: ScreenUtil().setWidth(370),
       child: Row(
         children: <Widget>[
           Text(
-            '价格：￥${list[index].lastPrice}',
+            '价格：￥${newList[index].lastPrice}',
             style: TextStyle(color:Colors.pink,fontSize:ScreenUtil().setSp(30)),
           ),
           Text(
-            '￥${list[index].goodsPrice}',
+            '￥${newList[index].goodsPrice}',
             style: TextStyle(
               color: Colors.black26,
               decoration: TextDecoration.lineThrough
@@ -68,7 +57,7 @@ class _CategoryGoodsListState extends State<CategoryGoodsList> {
       ),
     );
   }
-  Widget _listWidget(int index) {
+  Widget _listWidget(List<GoodsInfo> newList, int index) {
     return InkWell(
       onTap: () {},
       child: Container(
@@ -81,11 +70,11 @@ class _CategoryGoodsListState extends State<CategoryGoodsList> {
         ),
         child: Row(
           children: <Widget>[
-            _goodsImage(index),
+            _goodsImage(newList, index),
             Column(
               children: <Widget>[
-                _goodsName(index),
-                _goodsPrice(index),
+                _goodsName(newList, index),
+                _goodsPrice(newList, index),
               ],
             )
           ],
@@ -96,16 +85,26 @@ class _CategoryGoodsListState extends State<CategoryGoodsList> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      // padding: EdgeInsets.only(left: 8.0),
-      width: ScreenUtil().setWidth(570),
-      height: ScreenUtil().setHeight(980),
-      child: ListView.builder(
-        itemCount: list.length,
-        itemBuilder: (context, index) {
-          return _listWidget(index);
-        },
-      ),
+    return Provide<CategoryGoodsListProvide> (
+      builder: (context, child, data) {
+        if (data.goodsList.length > 0) {
+          return Expanded(
+            child: Container(
+              // padding: EdgeInsets.only(left: 8.0),
+              width: ScreenUtil().setWidth(570),
+              child: ListView.builder(
+                itemCount: data.goodsList.length,
+                itemBuilder: (context, index) {
+                  return _listWidget(data.goodsList, index);
+                },
+              ),
+            ),
+          );
+        } else {
+          return Text('暂时没有数据');
+        }
+      },
     );
+      
   }
 }
