@@ -1,5 +1,7 @@
+import 'package:flutter_easyrefresh/easy_refresh.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_shop/service/service_method.dart';
 import 'package:provide/provide.dart';
 import '../../model/goods_model.dart';
 import '../../provide/category_goods_list.dart';
@@ -12,6 +14,7 @@ class CategoryGoodsList extends StatefulWidget {
 }
 
 class _CategoryGoodsListState extends State<CategoryGoodsList> {
+  var scrollController = new ScrollController();
   
   @override
   void initState() { 
@@ -83,21 +86,61 @@ class _CategoryGoodsListState extends State<CategoryGoodsList> {
     );
   }
 
+  // 上拉加载功能函数
+  void _loadGoodsList(int page, String cid) async {
+    await getClassGoodsData(page, cid).then((value) {
+      HomePageData categoryGoodsData = HomePageData.fromJson(value);
+      List<GoodsInfo> goodsCategoryList = categoryGoodsData.indexes;
+      Provide.value<CategoryGoodsListProvide>(context).addGoodsList(goodsCategoryList);
+    });
+  }
+
+  // 下拉刷新功能函数
+  void _onRefreshGoodsList(int page, String cid) async {
+    await getClassGoodsData(page, cid).then((value) {
+      HomePageData categoryGoodsData = HomePageData.fromJson(value);
+      List<GoodsInfo> goodsCategoryList = categoryGoodsData.indexes;
+      Provide.value<CategoryGoodsListProvide>(context).getGoodsList(goodsCategoryList);
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Provide<CategoryGoodsListProvide> (
       builder: (context, child, data) {
+        try {
+          if(Provide.value<CategoryGoodsListProvide>(context).page == 1) {
+            scrollController.jumpTo(0.0);
+          }
+        } catch(e) {
+          print('进入页面第一次初始化：$e');
+        }
         if (data.goodsList.length > 0) {
           return Expanded(
             child: Container(
-              // padding: EdgeInsets.only(left: 8.0),
               width: ScreenUtil().setWidth(570),
-              child: ListView.builder(
-                itemCount: data.goodsList.length,
-                itemBuilder: (context, index) {
-                  return _listWidget(data.goodsList, index);
+              child: EasyRefresh(
+                child: ListView.builder(
+                  controller: scrollController,
+                  itemCount: data.goodsList.length,
+                  itemBuilder: (context, index) {
+                    return _listWidget(data.goodsList, index);
+                  },
+                ),
+                onLoad: () async {
+                  // print('这是上拉加载');
+                  // page++
+                  Provide.value<CategoryGoodsListProvide>(context).addPage();
+                  // 获取数据 并把数据添加到列表尾部
+                  _loadGoodsList(data.page, data.cid);
                 },
-              ),
+                onRefresh: () async {
+                  // print('这是下拉刷新函数');
+                  // page++
+                  Provide.value<CategoryGoodsListProvide>(context).addPage();
+                  _onRefreshGoodsList(data.page, data.cid);
+                },
+              )
             ),
           );
         } else {

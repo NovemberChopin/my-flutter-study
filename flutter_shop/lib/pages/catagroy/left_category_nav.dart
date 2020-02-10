@@ -32,6 +32,8 @@ class _LeftCategoryNavState extends State<LeftCategoryNav> {
           // Provide.value<SubCategoryProvider>(context).getSubCategoryList(subList);
 
           var cid = list[index].id;
+          Provide.value<CategoryGoodsListProvide>(context).setCid(cid);
+          Provide.value<CategoryGoodsListProvide>(context).setPage(1);
           _getCategoryGoodsList(cid);
         },
         child: Container(
@@ -77,7 +79,7 @@ class _LeftCategoryNavState extends State<LeftCategoryNav> {
     super.initState();
     _getCategory();
 
-    // 修改列表类的状态
+    // 修改列表类的初始状态（加载全部类，商品数据）
     _getCategoryGoodsList(listIndex.toString());
   }
 

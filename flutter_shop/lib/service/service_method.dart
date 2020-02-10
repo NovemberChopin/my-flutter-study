@@ -9,7 +9,7 @@ Future getHomePageData(int page) {
       'appkey': '5wfidtll6t',
       'page': page,
       'pagesize': 10,
-      'cid': 3          // 商品类型
+      'cid': 0          // 商品类型
     };
   return requestGet(servicePath['homePageContext'], param: queryParameters);
 }
