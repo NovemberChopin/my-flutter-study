@@ -3,6 +3,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../model/goods_model.dart';
 
+import '../../routers/application.dart';
+
 // 火爆专区部分
 class HotGoods extends StatelessWidget {
   HotGoods({Key key, this.page, this.hotDataList}) : super(key: key);
@@ -11,12 +13,12 @@ class HotGoods extends StatelessWidget {
   final List<GoodsInfo> hotDataList;
 
   //火爆专区子项
-  Widget _wrapList(List<GoodsInfo> hotGoodsList) {
+  Widget _wrapList(BuildContext context, List<GoodsInfo> hotGoodsList) {
     if (hotGoodsList.length != 0) {
       List<Widget> listWidget = hotGoodsList.map((val) {
         return InkWell(
             onTap: () {
-              print('点击了火爆商品');
+              Application.router.navigateTo(context, "/detail?id=$val['id']");
             },
             child: Container(
               width: ScreenUtil().setWidth(372),
@@ -74,7 +76,7 @@ class HotGoods extends StatelessWidget {
                 border: Border(bottom: BorderSide(width: 0.5, color: Colors.black12))),
             child: Text('火爆专区'),
           ),
-          _wrapList(hotDataList)
+          _wrapList(context, hotDataList)
         ],
       ),
     );
