@@ -33,4 +33,11 @@ class DetailsInfoProvider with ChangeNotifier {
     }
     notifyListeners();
   }
+
+  void setTabBarToLrft() {
+    isLeft = true;
+    isRight = false;
+
+    notifyListeners();
+  }
 }

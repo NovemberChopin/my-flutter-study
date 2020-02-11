@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_shop/pages/detail/bottom.dart';
+import 'package:flutter_shop/pages/detail/detail_html.dart';
 import 'package:flutter_shop/pages/detail/detail_tabbar.dart';
 import 'package:flutter_shop/pages/detail/explain_area.dart';
 import 'package:flutter_shop/pages/detail/top_area.dart';
@@ -23,7 +25,8 @@ class DetailsPage extends StatelessWidget {
         leading: IconButton(
           icon: Icon(Icons.arrow_back),
           onPressed: () {
-            print('返回上一页');
+            // 设置 tabBar 的状态为左边
+            Provide.value<DetailsInfoProvider>(context).setTabBarToLrft();
             Navigator.pop(context);
           },
         ),
@@ -33,11 +36,21 @@ class DetailsPage extends StatelessWidget {
         future: _getGoodsInfo(context),
         builder: (context, snapshot) {
           if(snapshot.hasData) {
-            return ListView(
+            return Stack(
               children: <Widget>[
-                DetailsTopArea(),
-                DetailsExplain(),
-                DetailsTabBar(),
+                ListView(
+                  children: <Widget>[
+                    DetailsTopArea(),
+                    DetailsExplain(),
+                    DetailsTabBar(),
+                    DetailsWeb(),
+                  ],
+                ),
+                Positioned(
+                  bottom: 0,
+                  left: 0,
+                  child: DetailsBottom(),
+                )
               ],
             );
           } else {
