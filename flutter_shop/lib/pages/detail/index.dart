@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_shop/pages/detail/detail_tabbar.dart';
+import 'package:flutter_shop/pages/detail/explain_area.dart';
+import 'package:flutter_shop/pages/detail/top_area.dart';
 import 'package:flutter_shop/provide/details_info.dart';
 import 'package:provide/provide.dart';
 
@@ -30,12 +33,12 @@ class DetailsPage extends StatelessWidget {
         future: _getGoodsInfo(context),
         builder: (context, snapshot) {
           if(snapshot.hasData) {
-            return Container(
-              child: Row(
-                children: <Widget>[
-                  Text(goodsId)
-                ],
-              ),
+            return ListView(
+              children: <Widget>[
+                DetailsTopArea(),
+                DetailsExplain(),
+                DetailsTabBar(),
+              ],
             );
           } else {
             return Text('加载中...');

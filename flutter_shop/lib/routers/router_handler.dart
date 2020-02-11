@@ -1,6 +1,6 @@
 import 'package:fluro/fluro.dart';
 import 'package:flutter/material.dart';
-import '../pages/detail/details_page.dart';
+import '../pages/detail/index.dart';
 
 Handler detailsHander = new Handler(
   handlerFunc: (BuildContext context, Map<String, dynamic> params) {
