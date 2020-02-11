@@ -25,7 +25,7 @@ class GoodsInfo {
 
   factory GoodsInfo.fromJson(Map<String, dynamic> json) {
     return GoodsInfo(
-        id: json['ID'].toString(),
+        id: json['GoodsId'].toString(),
         goodsName: json['GoodsName'],
         goodsClass: json['GoodsClass'],
         imgUrl: json['ImgUrl'],

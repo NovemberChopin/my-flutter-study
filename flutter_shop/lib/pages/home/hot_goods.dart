@@ -18,7 +18,7 @@ class HotGoods extends StatelessWidget {
       List<Widget> listWidget = hotGoodsList.map((val) {
         return InkWell(
             onTap: () {
-              Application.router.navigateTo(context, "/detail?id=$val['id']");
+              Application.router.navigateTo(context, "/detail?id=${val.id}");
             },
             child: Container(
               width: ScreenUtil().setWidth(372),
