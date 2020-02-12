@@ -168,8 +168,8 @@ class _MyAppState extends State<MyApp> {
   void initState() {
     super.initState();
     _testDetailModel();
-    // _fun();
-    // _testCategoryModel();
+    _fun();
+    _testCategoryModel();
     // print('+++++++++');
     // setState(() {
     //   list = getCategroyList();

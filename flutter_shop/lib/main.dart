@@ -6,6 +6,7 @@ import './provide/counter.dart';
 import './provide/sub_category.dart';
 import './provide/details_info.dart';
 import './provide/category_goods_list.dart';
+import './provide/cart.dart';
 
 import 'package:fluro/fluro.dart'; // 引入路由模块
 import './routers/application.dart';
@@ -16,11 +17,15 @@ void main() {
   var subCategoryProvider = SubCategoryProvider();
   var categoryGoodsListProvide= CategoryGoodsListProvide();
   var detailsInforProvider = DetailsInfoProvider();
+  var cartProvider = CartProvider();
+
   providers
     ..provide(Provider<Counter>.value(counter))
     ..provide(Provider<SubCategoryProvider>.value(subCategoryProvider))
     ..provide(Provider<CategoryGoodsListProvide>.value(categoryGoodsListProvide))
-    ..provide(Provider<DetailsInfoProvider>.value(detailsInforProvider));
+    ..provide(Provider<DetailsInfoProvider>.value(detailsInforProvider))
+    ..provide(Provider<CartProvider>.value(cartProvider));
+    
   runApp(ProviderNode(
     child: MyApp(),
     providers: providers,
