@@ -1,4 +1,4 @@
-// 商品详情类
+
 
 class GoodsInfo {
   String id; // 商品ID

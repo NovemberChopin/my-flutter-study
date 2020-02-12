@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_shop/config/service_url.dart';
-import '../model/goods_model.dart';
+import '../model/details_model.dart';
 import '../service/service_method.dart';
 
 class DetailsInfoProvider with ChangeNotifier {
-  GoodsInfo detailsInfo;
+  DetailInfo detailsInfo;
   bool isLeft = true;   // 详情页面的 tabar 控制
   bool isRight = false;
 
@@ -16,8 +16,8 @@ class DetailsInfoProvider with ChangeNotifier {
     };
     await requestGet(servicePath['getDetailInfo'], param: queryParameters).then((value) {
       // print(value);
-      HomePageData homePageData = HomePageData.fromJson(value);
-      detailsInfo = homePageData.indexes[0];
+      DetailPageData detailPageData = DetailPageData.fromJson(value);
+      detailsInfo = detailPageData.info;
       notifyListeners();
     });
   }
