@@ -40,7 +40,9 @@ class CartProvider with ChangeNotifier {
     // 转化为字符串
     cartString = json.encode(tempList).toString();
     print(cartString);
-    // print(cartList.toString());
+    for (var i = 0; i < cartList.length; i++) {
+      print(cartList[i].goodsName+ '\n');
+    }
     // 持久化存储
     prefs.setString('cartInfo', cartString);
     notifyListeners();
@@ -68,9 +70,9 @@ class CartProvider with ChangeNotifier {
   // 清空购物车
   void remove() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
-
+    cartList = [];
     prefs.remove('cartInfo');
-    print('清空购物车完成');
+    print('清空购物车完成'+ "还有数据的数量： " + cartList.length.toString());
     notifyListeners();
   }
 }
