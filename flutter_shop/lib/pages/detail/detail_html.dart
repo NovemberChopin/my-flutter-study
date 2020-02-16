@@ -51,7 +51,7 @@ class DetailsWeb extends StatelessWidget {
                 )
               ],
             );
-          } else return Text('正在加载中');
+          } else return CircularProgressIndicator();
         } else {
           return Container(
               width: ScreenUtil().setWidth(750),

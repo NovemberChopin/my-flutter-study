@@ -32,7 +32,8 @@ class CartProvider with ChangeNotifier {
         'goodsName': goodsName,
         'count': count,
         'price': price,
-        'image': image
+        'image': image,
+        'isCheck': 1
       };
       tempList.add(newGoods);
       cartList.add(CartInfoMode.fromJson(newGoods));
@@ -40,16 +41,13 @@ class CartProvider with ChangeNotifier {
     // 转化为字符串
     cartString = json.encode(tempList).toString();
     print(cartString);
-    for (var i = 0; i < cartList.length; i++) {
-      print(cartList[i].goodsName+ '\n');
-    }
     // 持久化存储
     prefs.setString('cartInfo', cartString);
     notifyListeners();
   }
 
   // 得到购物车中的商品
-  void getCartInfo() async {
+  getCartInfo() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     cartString = prefs.getString('cartInfo');
     // 初始化 cartList
@@ -74,5 +72,17 @@ class CartProvider with ChangeNotifier {
     prefs.remove('cartInfo');
     print('清空购物车完成'+ "还有数据的数量： " + cartList.length.toString());
     notifyListeners();
+  }
+
+  void deleteOneGoods(String id) async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    cartString = prefs.getString('cartInfo');
+    List<Map> tempList = (json.decode(cartString.toString()) as List).cast();
+
+    tempList.removeWhere((element) => element['goodsId'] == id);
+    cartString = json.encode(tempList).toString();
+    prefs.setString('cartInfo', cartString);
+    
+    await getCartInfo();
   }
 }

@@ -81,7 +81,7 @@ class _HomePageState extends State<HomePage> with AutomaticKeepAliveClientMixin 
             );
               
           } else {
-            return Center(child: Text('正在加载。。。'));
+            return CircularProgressIndicator();
           }
         },
       ),

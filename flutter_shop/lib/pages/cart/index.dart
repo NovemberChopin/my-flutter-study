@@ -1,6 +1,5 @@
 
 import 'package:flutter/material.dart';
-import 'package:flutter_shop/model/cartInfo.dart';
 import 'package:flutter_shop/pages/cart/cart_Item.dart';
 import 'package:flutter_shop/pages/cart/cart_bottom.dart';
 import 'package:flutter_shop/provide/cart.dart';
@@ -44,21 +43,24 @@ class CartPage extends StatelessWidget {
   }
 
   Widget _createListView(BuildContext context, AsyncSnapshot snapshot) {
-    List<CartInfoMode> cartList = Provide.value<CartProvider>(context).cartList;
-    return Stack(
-      children: <Widget>[
-        ListView.builder(
-          itemCount: cartList.length,
-          itemBuilder: (context, index) {
-            return CartItem(cartList[index]);
-          },
-        ),
-        Positioned(
-          bottom: 0,
-          left: 0,
-          child: CartBottom(),
-        )
-      ],
+    return Provide<CartProvider>(
+      builder: (context, child, carts) {
+        return Stack(
+          children: <Widget>[
+            ListView.builder(
+              itemCount: carts.cartList.length,
+              itemBuilder: (context, index) {
+                return CartItem(carts.cartList[index]);
+              },
+            ),
+            Positioned(
+              bottom: 0,
+              left: 0,
+              child: CartBottom(),
+            )
+          ],
+        );
+      },
     );
   }
 }

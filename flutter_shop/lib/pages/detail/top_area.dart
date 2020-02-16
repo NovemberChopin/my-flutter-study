@@ -25,7 +25,7 @@ class DetailsTopArea extends StatelessWidget {
             ),
           );
         } else {
-          return Text('正在加载中...');
+          return CircularProgressIndicator();
         }
       },
     );
