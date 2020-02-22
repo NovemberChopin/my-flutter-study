@@ -1,19 +1,24 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_shop/provide/cart.dart';
+import 'package:provide/provide.dart';
 
 class CartBottom extends StatelessWidget {
   int allCount;
   double allPrice;
   CartBottom(this.allCount, this.allPrice);
   //全选按钮
-  Widget selectAllBtn() {
+  Widget selectAllBtn(context) {
+    bool isAllCheck = Provide.value<CartProvider>(context).isAllCheck;
     return Container(
       child: Row(
         children: <Widget>[
           Checkbox(
-            value: true,
+            value: isAllCheck,
             activeColor: Colors.pink,
-            onChanged: (bool val) {},
+            onChanged: (bool val) {
+              Provide.value<CartProvider>(context).changeAllCheckState();
+            },
           ),
           Text('全选')
         ],
@@ -91,7 +96,7 @@ class CartBottom extends StatelessWidget {
       color: Colors.white,
       width: ScreenUtil().setWidth(750),
       child: Row(
-            children: <Widget>[selectAllBtn(), allPriceArea(allPrice), goButton(allCount)],
+            children: <Widget>[selectAllBtn(context), allPriceArea(allPrice), goButton(allCount)],
           ),
       // Provide<CartProvider>(
       //   builder: (context, child, data) {
