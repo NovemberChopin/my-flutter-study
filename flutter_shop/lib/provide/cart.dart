@@ -76,6 +76,7 @@ class CartProvider with ChangeNotifier {
         }
         cartList.add(CartInfoMode.fromJson(element));
       });
+      // print('allPrice: ' + allPrice.toString());
     }
 
     notifyListeners();
@@ -102,6 +103,7 @@ class CartProvider with ChangeNotifier {
     await getCartInfo();
   }
 
+  // 改变每个商品的选择框状态
   changeCheckState(String id) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     cartString = prefs.getString('cartInfo');
@@ -117,6 +119,7 @@ class CartProvider with ChangeNotifier {
     await getCartInfo();
   }
 
+  // 改变全选框的状态
   changeAllCheckState() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     cartString = prefs.getString('cartInfo');
@@ -127,6 +130,27 @@ class CartProvider with ChangeNotifier {
 
     tempList.forEach((element) {element['isCheck'] = check;});
     
+    cartString = json.encode(tempList).toString();
+    prefs.setString('cartInfo', cartString);
+    
+    await getCartInfo();
+  }
+
+  // 商品的数量加减
+  addOrReduceAction(var item, String todo) async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    cartString = prefs.getString('cartInfo');
+    List<Map> tempList = (json.decode(cartString.toString()) as List).cast();
+
+    int index = tempList.indexWhere((element) => element['goodsId'] == item.goodsId);
+    int count = tempList[index]['count'];
+    if (todo == 'add') {
+      count ++;
+    } else if (count > 1) {
+      count --;
+    }
+    tempList[index]['count'] = count;
+
     cartString = json.encode(tempList).toString();
     prefs.setString('cartInfo', cartString);
     
