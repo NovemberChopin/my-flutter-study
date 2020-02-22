@@ -56,7 +56,7 @@ class CartPage extends StatelessWidget {
             Positioned(
               bottom: 0,
               left: 0,
-              child: CartBottom(),
+              child: CartBottom(carts.allGoodsCount, carts.allPrice),
             )
           ],
         );

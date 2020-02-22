@@ -8,6 +8,9 @@ class CartProvider with ChangeNotifier {
   String cartString = "[]";
   List<CartInfoMode> cartList = [];
 
+  double allPrice = 0;
+  int allGoodsCount = 0;
+
   // 添加商品到购物车
   void save(goodsId, goodsName, count, price, image) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
@@ -43,6 +46,9 @@ class CartProvider with ChangeNotifier {
     print(cartString);
     // 持久化存储
     prefs.setString('cartInfo', cartString);
+    
+    await getCartInfo();
+
     notifyListeners();
   }
 
@@ -57,7 +63,15 @@ class CartProvider with ChangeNotifier {
       cartList = [];
     } else {
       List<Map> tempList = (json.decode(cartString.toString()) as List).cast();
+
+      allPrice = 0;
+      allGoodsCount = 0;
+
       tempList.forEach((element) {
+        if (element['isCheck'] == 1) {
+          allPrice += element['count'] * double.parse(element['price']);
+          allGoodsCount += element['count'];
+        }
         cartList.add(CartInfoMode.fromJson(element));
       });
     }

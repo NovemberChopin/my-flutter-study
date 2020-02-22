@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class CartBottom extends StatelessWidget {
+  int allCount;
+  double allPrice;
+  CartBottom(this.allCount, this.allPrice);
   //全选按钮
   Widget selectAllBtn() {
     return Container(
@@ -19,7 +22,8 @@ class CartBottom extends StatelessWidget {
   }
 
   // 合计区域
-  Widget allPriceArea() {
+  Widget allPriceArea(double allPrice) {
+    // double allPrice = Provide.value<CartProvider>(context).allPrice;
     return Container(
       width: ScreenUtil().setWidth(430),
       alignment: Alignment.centerRight,
@@ -36,7 +40,7 @@ class CartBottom extends StatelessWidget {
               Container(
                 alignment: Alignment.centerLeft,
                 width: ScreenUtil().setWidth(150),
-                child: Text('￥1922',
+                child: Text(allPrice.toString(),
                     style: TextStyle(
                       fontSize: ScreenUtil().setSp(36),
                       color: Colors.red,
@@ -59,7 +63,8 @@ class CartBottom extends StatelessWidget {
   }
 
   //结算按钮
-  Widget goButton() {
+  Widget goButton(int allCount) {
+    // int allCount = Provide.value<CartProvider>(context).allGoodsCount;
     return Container(
       width: ScreenUtil().setWidth(160),
       padding: EdgeInsets.only(left: 10),
@@ -71,7 +76,7 @@ class CartBottom extends StatelessWidget {
           decoration: BoxDecoration(
               color: Colors.red, borderRadius: BorderRadius.circular(3.0)),
           child: Text(
-            '结算(6)',
+            '结算($allCount)',
             style: TextStyle(color: Colors.white),
           ),
         ),
@@ -86,8 +91,15 @@ class CartBottom extends StatelessWidget {
       color: Colors.white,
       width: ScreenUtil().setWidth(750),
       child: Row(
-        children: <Widget>[selectAllBtn(), allPriceArea(), goButton()],
-      ),
+            children: <Widget>[selectAllBtn(), allPriceArea(allPrice), goButton(allCount)],
+          ),
+      // Provide<CartProvider>(
+      //   builder: (context, child, data) {
+      //     print('数量：'+ data.allGoodsCount.toString());
+      //     print('价格：'+ data.allPrice.toString());
+      //     return ;
+      //   },
+      // )
     );
   }
 }
