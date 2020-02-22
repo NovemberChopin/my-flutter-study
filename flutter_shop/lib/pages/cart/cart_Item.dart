@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_shop/pages/cart/cart_count.dart';
 import 'package:flutter_shop/provide/cart.dart';
+import 'package:flutter_shop/routers/application.dart';
 import 'package:provide/provide.dart';
 import '../../model/cartInfo.dart';
 
@@ -13,16 +14,16 @@ class CartItem extends StatelessWidget {
   Widget build(BuildContext context) {
     // print(item);
     return Container(
-      margin: EdgeInsets.fromLTRB(5.0, 2.0, 5.0, 2.0),
-      padding: EdgeInsets.fromLTRB(5.0, 10.0, 5.0, 10.0),
+      // margin: EdgeInsets.fromLTRB(0.0, 2.0, 0.0, 2.0),
+      // padding: EdgeInsets.fromLTRB(0.0, 10.0, 0.0, 10.0),
       decoration: BoxDecoration(
           color: Colors.white,
           border: Border(bottom: BorderSide(width: 1, color: Colors.black12))),
       child: Row(
         children: <Widget>[
           _cartCheckBt(context, item),
-          _cartImage(item),
-          _cartGoodsName(item),
+          _cartImage(context, item),
+          _cartGoodsName(context, item),
           _cartPrice(context, item)
         ],
       ),
@@ -43,29 +44,42 @@ class CartItem extends StatelessWidget {
   }
 
   //商品图片
-  Widget _cartImage(item) {
-    return Container(
-      width: ScreenUtil().setWidth(150),
-      padding: EdgeInsets.all(3.0),
-      decoration:
-          BoxDecoration(border: Border.all(width: 1, color: Colors.black12)),
-      child: Image.network(item.image),
+  Widget _cartImage(context, item) {
+    return InkWell(
+      onTap: () {
+        var id = item.goodsId;
+        Application.router.navigateTo(context, '/detail?id=$id');
+      },
+      child: Container(
+        width: ScreenUtil().setWidth(150),
+        padding: EdgeInsets.all(3.0),
+        decoration:
+            BoxDecoration(border: Border.all(width: 1, color: Colors.black12)),
+        child: Image.network(item.image),
+      ),
     );
   }
 
   //商品名称
-  Widget _cartGoodsName(item) {
-    return Container(
-      width: ScreenUtil().setWidth(350),
-      padding: EdgeInsets.all(10),
-      alignment: Alignment.topLeft,
-      child: Column(
-        children: <Widget>[
-          Text(item.goodsName),
-          CartCount(item),
-        ],
+  Widget _cartGoodsName(context, item) {
+    return InkWell(
+      onTap: () {
+        var id = item.goodsId;
+        Application.router.navigateTo(context, '/detail?id=$id');
+      },
+      child: Container(
+        width: ScreenUtil().setWidth(400),
+        padding: EdgeInsets.all(10),
+        alignment: Alignment.topLeft,
+        child: Column(
+          children: <Widget>[
+            Text(item.goodsName, maxLines: 2,),
+            CartCount(item),
+          ],
+        ),
       ),
     );
+    
   }
 
   //商品价格

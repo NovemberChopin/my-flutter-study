@@ -4,7 +4,7 @@ import '../config/service_url.dart';
 
 // 获取首页数据
 Future getHomePageData(int page) {
-  print('获取首页数据...............');
+  // print('获取首页数据...............');
   var queryParameters = {
       'appkey': '5wfidtll6t',
       'page': page,
@@ -16,7 +16,7 @@ Future getHomePageData(int page) {
 
 // 获取首页爆款商品数据
 Future getHotGoodsData(int page) {
-  print('正在获取热卖商品数据...............');
+  // print('正在获取热卖商品数据...............');
   var queryParameters = {
       'appkey': '5wfidtll6t',
       'page': page,
@@ -40,7 +40,7 @@ Future getCategoryList() {
 
 // 获取分类页列表商品数据
 Future getClassGoodsData(int page, String cid) {
-  print('获取分类页商品数据...............');
+  // print('获取分类页商品数据...............');
   var queryParameters = {
     'appkey': '5wfidtll6t',
     'page': page,
@@ -55,7 +55,7 @@ Future requestGet(String url, {Map param}) async{
   try{
     Response response;
     Dio dio = new Dio();
-    print(url);
+    // print(url);
     response = await dio.get(
       url,
       queryParameters: param
