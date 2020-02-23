@@ -8,18 +8,8 @@ import './cart/index.dart';
 import './catagroy/index.dart';
 import './member_page.dart';
 import './home/index.dart';
-// import './home/temp.dart';
-
-// class IndexPage extends StatefulWidget {
-//   IndexPage({Key key}) : super(key: key);
-
-//   @override
-//   _IndexPageState createState() => _IndexPageState();
-// }
 
 class IndexPage extends StatelessWidget {
-
-  // PageController _pageController;
 
   final List<BottomNavigationBarItem> bottomTabs = [
     BottomNavigationBarItem(
@@ -46,22 +36,6 @@ class IndexPage extends StatelessWidget {
     CartPage(),
     MemberPage()
   ];
-  // int currentIndex = 0;
-  // var currentPage;
-
-  // @override
-  // void initState() { 
-  //   super.initState();
-  //   currentPage = tabBodies[currentIndex];
-  //   _pageController=new PageController()
-  //   ..addListener(() {
-  //     if (currentPage != _pageController.page.round()) {
-  //       setState(() {
-  //         currentPage = _pageController.page.round();
-  //       });
-  //     }
-  //   });
-  // }
 
   @override
   Widget build(BuildContext context) {
