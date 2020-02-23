@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_shop/provide/currentIndex.dart';
 import 'package:flutter_shop/routers/routes.dart';
 import './pages/index_page.dart';
 import 'package:provide/provide.dart';  // 引入状态管理模块
@@ -18,13 +19,14 @@ void main() {
   var categoryGoodsListProvide= CategoryGoodsListProvide();
   var detailsInforProvider = DetailsInfoProvider();
   var cartProvider = CartProvider();
-
+  var currentIndexProvider = CurrentIndexProvider();
   providers
     ..provide(Provider<Counter>.value(counter))
     ..provide(Provider<SubCategoryProvider>.value(subCategoryProvider))
     ..provide(Provider<CategoryGoodsListProvide>.value(categoryGoodsListProvide))
     ..provide(Provider<DetailsInfoProvider>.value(detailsInforProvider))
-    ..provide(Provider<CartProvider>.value(cartProvider));
+    ..provide(Provider<CartProvider>.value(cartProvider))
+    ..provide(Provider<CurrentIndexProvider>.value(currentIndexProvider));
     
   runApp(ProviderNode(
     child: MyApp(),
