@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 
 import './routeDemo/simpleRoute.dart';
 import './routeDemo/namedRoute.dart';
+import './officeDemo/friendlyChat.dart';
+import './officeDemo/layoutDemo.dart';
+import './officeDemo/randomWords.dart';
 
 void main() => runApp(MyApp());
 
@@ -16,7 +19,11 @@ class MyApp extends StatelessWidget {
       routes: {
         "/": (context) => ShowList(),
         "simpleRoute": (context) => SimpleRoute(),
-        "namedRoute": (context) => NamedRoute()
+        "namedRoute": (context) => NamedRoute(),
+        "friendlyChat": (context) => FriendlyChat(),
+        "layoutDemo": (context) => LayoutDemo(),
+        "randomWords": (context) => RandomWords(),
+
       },
     );
   }
@@ -24,10 +31,16 @@ class MyApp extends StatelessWidget {
 const demoList = <String>[
   'simpleRoute',
   'namedRoute',
+  'friendlyChat',
+  'layoutDemo',
+  'randomWords',
 ];
 const demoDecrible = <String>[
   "普通命名实例",
   "命名路由实例",
+  "官方实例1：Friendly Chat App",
+  "官方实例2：Layout Demo",
+  "官方实例3：Random Words",
 ]; 
 class ShowList extends StatelessWidget {
   const ShowList({Key key}) : super(key: key);
