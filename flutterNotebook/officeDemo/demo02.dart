@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 
 void main() => runApp(MyApp());
 
@@ -27,17 +28,16 @@ class MyApp extends StatelessWidget {
   
   @override
   Widget build(BuildContext context) {
+    debugPaintSizeEnabled = true; // 显示布局边界
     // #docregion titleSection
     Widget titleSection = Container(
       padding: const EdgeInsets.all(32),
       child: Row(
         children: [
           Expanded(
-            /*1*/
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                /*2*/
                 Container(
                   padding: const EdgeInsets.only(bottom: 8),
                   child: Text(
@@ -56,11 +56,15 @@ class MyApp extends StatelessWidget {
               ],
             ),
           ),
-          /*3*/
-          Icon(
-            Icons.star,
+          IconButton(
+            icon: Icon(Icons.star),
             color: Colors.red[500],
+            onPressed: () {},
           ),
+          // Icon(
+          //   Icons.star,
+          //   color: Colors.red[500],
+          // ),
           Text('41'),
         ],
       ),
@@ -100,7 +104,6 @@ class MyApp extends StatelessWidget {
       ),
     );
 
-
     return MaterialApp(
       title: 'Flutter layout demo',
       home: Scaffold(
@@ -111,7 +114,7 @@ class MyApp extends StatelessWidget {
           children: [
             Image.asset(
               'images/lake.jpg',
-              width: 600,
+              // width: 600,
               height: 240,
               fit: BoxFit.cover,
             ),

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_shop/provide/currentIndex.dart';
-import 'package:flutter_shop/routers/application.dart';
 import 'package:provide/provide.dart';
 import '../../provide/cart.dart';
 import '../../provide/details_info.dart';

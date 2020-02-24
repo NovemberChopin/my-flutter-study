@@ -26,8 +26,7 @@ class MemberPage extends StatelessWidget {
           Container(
             margin: EdgeInsets.only(top: 30),
             child: ClipOval(
-                child:
-                    Image.network('https://s2.ax1x.com/2020/02/01/1GXm5T.png')),
+              child: Image.network('https://s2.ax1x.com/2020/02/01/1GXm5T.png')),
           ),
           Container(
             margin: EdgeInsets.only(top: 10),

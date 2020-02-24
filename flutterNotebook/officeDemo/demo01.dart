@@ -53,7 +53,7 @@ class ChatScreenState extends State<ChatScreen> with TickerProviderStateMixin {
           margin: const EdgeInsets.symmetric(horizontal: 8.0),
           child: new Row(
             children: <Widget>[
-              new Flexible(
+              new Expanded(
                 child: new TextField(
                   controller: _textController,
                   onChanged: (String text) {
@@ -84,7 +84,7 @@ class ChatScreenState extends State<ChatScreen> with TickerProviderStateMixin {
         appBar: new AppBar(title: new Text('Friendlychat')),
         body: new Column(
           children: <Widget>[
-            new Flexible(
+            new Expanded(
               child: new ListView.builder(
                 padding: new EdgeInsets.all(8.0),
                 reverse: true,

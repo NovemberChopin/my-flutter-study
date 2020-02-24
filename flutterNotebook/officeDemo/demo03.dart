@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:english_words/english_words.dart';
+import 'package:flutter/rendering.dart';
 
 void main() => runApp(MyApp());
 
@@ -56,7 +57,7 @@ class RandomWordsState extends State<RandomWords> {
         style: _biggerFont,
       ),
       trailing: new Icon(alreadySaved ? Icons.favorite : Icons.favorite_border,
-          color: alreadySaved ? Colors.red : null),
+      color: alreadySaved ? Colors.red : null),
       onTap: () {
         setState(() {
           if (alreadySaved) {
@@ -71,7 +72,7 @@ class RandomWordsState extends State<RandomWords> {
 
   Widget _buildSuggestions() {
     return new ListView.builder(
-      padding: const EdgeInsets.all(16.0),
+      padding: const EdgeInsets.all(8.0),
       // 对于每个建议的单词对都会调用一次itemBuilder，然后将单词对添加到ListTile行中
       // 在偶数行，该函数会为单词对添加一个ListTile row.
       // 在奇数行，该函数会添加一个分割线widget，来分隔相邻的词对。
@@ -91,6 +92,8 @@ class RandomWordsState extends State<RandomWords> {
   }
 
   Widget build(BuildContext context) {
+    // debugPaintSizeEnabled = true;
+
     // final wordPair = new WordPair.random();
     // return new Text(wordPair.asPascalCase);
     return new Scaffold(
