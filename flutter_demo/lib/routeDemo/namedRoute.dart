@@ -1,13 +1,7 @@
-/// 命名路由实例
-///
-
+// 命名路由实例
 import 'package:flutter/material.dart';
 
-void main() {
-  runApp(MyApp());
-}
-
-class MyApp extends StatelessWidget {
+class NamedRoute extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -92,23 +86,6 @@ class MyHomePage extends StatelessWidget {
                 var result = await Navigator.pushNamed(context, "new_page2", arguments: "Hi");
                 print("路由返回值：$result");
               },
-            ),
-            TextField(
-              autofocus: true,
-              decoration: InputDecoration(
-                  labelText: "用户名",
-                  hintText: "用户名或邮箱",
-                  prefixIcon: Icon(Icons.person)
-              ),
-            ),
-            TextField(
-              decoration: InputDecoration(
-                  labelText: "密码",
-                  hintText: "您的登录密码",
-                  prefixIcon: Icon(Icons.lock)
-              ),
-              // 是否隐藏正在编辑的文本，如用于输入密码的场景等，文本内容会用“•”替换。
-              obscureText: true,
             ),
           ],
         ),

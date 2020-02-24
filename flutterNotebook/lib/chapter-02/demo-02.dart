@@ -12,7 +12,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: MyHomePage(title: 'Flutter Demo Home Page'),
+      home: MyHomePage(),
     );
   }
 }
@@ -63,70 +63,42 @@ class TipRoute extends StatelessWidget {
   }
 }
 
-class MyHomePage extends StatefulWidget {
-  MyHomePage({Key key, this.title}) : super(key: key);
-
-  final String title;
-
-  @override
-  _MyHomePageState createState() => _MyHomePageState();
-}
-
-class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
-
-  void _incrementCounter() {
-    setState(() {
-      _counter++;
-    });
-  }
-
+class MyHomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(widget.title),
+        title: Text('非命名路由实例'),
       ),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            new Text(
-              'You have pushed the button this many times:',
-            ),
-            new Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headline4,
-            ),
-            new FlatButton(
+            new RaisedButton(
               child: new Text('Open new route page'),
-              textColor: Colors.blue,
+              textColor: Theme.of(context).accentColor,
               onPressed: () {
                 Navigator.push(context, MaterialPageRoute(builder: (context) {
                   return NewRoute();
                 }));
               },
             ),
-            new FlatButton(
+            new RaisedButton(
               child: new Text('路由传值实例'),
-              textColor: Colors.blue,
+              textColor: Theme.of(context).accentColor,
               onPressed: () async {
-                var result = await Navigator.push(context,
-                    MaterialPageRoute(builder: (context) {
-                  return TipRoute(
-                    text: "我是提示XXX",
-                  );
+                var result = await Navigator.push(context, 
+                  MaterialPageRoute(builder: (context) {
+                    return TipRoute(
+                      // 通过设置参数向打开的路由页面传值
+                      text: "我是传入的值",
+                    );
                 }));
                 print("路由返回值：$result");
               },
             )
           ],
         ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: Icon(Icons.add),
       ),
     );
   }
