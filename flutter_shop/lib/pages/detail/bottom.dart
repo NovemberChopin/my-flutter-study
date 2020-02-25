@@ -9,6 +9,17 @@ class DetailsBottom extends StatelessWidget {
   @override
   Widget build(BuildContext context) { 
     
+    void _addGoodsToCart() {
+      var goodsId, goodsName, count, price, image;
+      var goodsInfo = Provide.value<DetailsInfoProvider>(context).detailsInfo;
+      goodsId = goodsInfo.id;
+      goodsName = goodsInfo.goodsName;
+      count = 1;
+      price = goodsInfo.lastPrice;
+      image = goodsInfo.imgUrl;
+    
+      Provide.value<CartProvider>(context).save(goodsId, goodsName, count, price, image);
+    }
 
     return Container(
       width: ScreenUtil().setWidth(750),
@@ -34,15 +45,7 @@ class DetailsBottom extends StatelessWidget {
           ),
           InkWell(
             onTap: () {
-              var goodsId, goodsName, count, price, image;
-              var goodsInfo = Provide.value<DetailsInfoProvider>(context).detailsInfo;
-              goodsId = goodsInfo.id;
-              goodsName = goodsInfo.goodsName;
-              count = 1;
-              price = goodsInfo.lastPrice;
-              image = goodsInfo.imgUrl;
-            
-              Provide.value<CartProvider>(context).save(goodsId, goodsName, count, price, image);
+              _addGoodsToCart();
             },
             child: Container(
               alignment: Alignment.center,
@@ -58,7 +61,12 @@ class DetailsBottom extends StatelessWidget {
           ),
           InkWell(
             onTap: () {
-              Provide.value<CartProvider>(context).remove();
+              // Provide.value<CartProvider>(context).remove();
+              // 把当前商品添加到购物车
+              _addGoodsToCart();
+              // 跳转到购物车页面
+              Provide.value<CurrentIndexProvider>(context).changeIndex(2);
+              Navigator.pop(context);
             },
             child: Container(
               alignment: Alignment.center,

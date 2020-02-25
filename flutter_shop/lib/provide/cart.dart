@@ -45,7 +45,7 @@ class CartProvider with ChangeNotifier {
     }
     // 转化为字符串
     cartString = json.encode(tempList).toString();
-    print(cartString);
+    // print(cartString);
     // 持久化存储
     prefs.setString('cartInfo', cartString);
 
