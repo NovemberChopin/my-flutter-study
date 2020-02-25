@@ -38,6 +38,7 @@ class _FriendlyChatState extends State<FriendlyChat> {
           children: <Widget>[
             Expanded(
               child: TextField(
+                autofocus: true,
                 controller: _textEditingController,
                 onChanged: (String text) {
                   setState(() {

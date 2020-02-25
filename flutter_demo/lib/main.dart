@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+
 import 'package:flutter_demo/component/nav_bottom.dart';
+import 'package:flutter_demo/widgit/layout/index.dart';
 
 import './routeDemo/simpleRoute.dart';
 import './routeDemo/namedRoute.dart';
@@ -26,6 +28,7 @@ class MyApp extends StatelessWidget {
         "layoutDemo": (context) => LayoutDemo(),
         "randomWords": (context) => RandomWords(),
         "bottomNav": (context) => BottomNav(),
+        "layout": (context) => LayoutWidget(),
       },
     );
   }
@@ -37,6 +40,7 @@ const demoList = <String>[
   'layoutDemo',
   'randomWords',
   'bottomNav',
+  'layout',
 ];
 const demoDecrible = <String>[
   "普通命名实例",
@@ -44,7 +48,8 @@ const demoDecrible = <String>[
   "官方实例1：Friendly Chat App",
   "官方实例2：Layout Demo",
   "官方实例3：Random Words",
-  "导航栏"
+  "导航栏",
+  "布局组件",
 ]; 
 class ShowList extends StatelessWidget {
   const ShowList({Key key}) : super(key: key);

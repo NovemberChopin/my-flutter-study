@@ -1,0 +1,47 @@
+import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
+import 'package:flutter_demo/widgit/layout/flexAndExpanded.dart';
+import 'package:flutter_demo/widgit/layout/rowAndColum.dart';
+
+class LayoutWidget extends StatelessWidget {
+  const LayoutWidget({Key key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    // debugPaintSizeEnabled = true;
+    return Scaffold(
+      appBar: AppBar(title: Text("这是布局 Widget"), centerTitle: true,),
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            RaisedButton(
+              child: Text("线性布局（Row 和 Column）"),
+              onPressed: () {
+                Navigator.push(context, MaterialPageRoute(builder: (context) {
+                  return RowWidget();
+                }));
+              },
+            ),
+            RaisedButton(
+              child: Text("线性布注意事项"),
+              onPressed: () {
+                Navigator.push(context, MaterialPageRoute(builder: (context) {
+                  return RowAndColumn();
+                }));
+              },
+            ),
+            RaisedButton(
+              child: Text("弹性布局（Flex 和 Expanded）"),
+              onPressed: () {
+                Navigator.push(context, MaterialPageRoute(builder: (context) {
+                  return FlexWedgit();
+                }));
+              },
+            ),
+          ],
+        ),
+      )
+    );
+  }
+}

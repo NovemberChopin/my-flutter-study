@@ -42,7 +42,7 @@ class _TabBarNavState extends State<TabBarNav> with SingleTickerProviderStateMix
 
   int _selectIndex = 1;
   TabController _tabController;
-  List tabs = ["新闻", "历史", "图片"];
+  List tabs = ["新闻", "历史", "图片", "小说", "电影", "音乐", "电脑", "手机"];
 
   @override
   void initState() {
@@ -56,6 +56,7 @@ class _TabBarNavState extends State<TabBarNav> with SingleTickerProviderStateMix
       appBar: AppBar(
         title: Text("导航栏"),
         bottom: TabBar(
+          isScrollable: true,
           controller: _tabController,
           tabs: tabs.map((e) => Tab(text: e,)).toList(),
         ),
