@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:flutter_demo/widgit/layout/align.dart';
 import 'package:flutter_demo/widgit/layout/flexAndExpanded.dart';
 import 'package:flutter_demo/widgit/layout/rowAndColum.dart';
 import 'package:flutter_demo/widgit/layout/stackAndPositioned.dart';
@@ -58,10 +59,18 @@ class LayoutWidget extends StatelessWidget {
               },
             ),
             RaisedButton(
-              child: Text("层叠布局-Stack Positioned"),
+              child: Text("层叠布局(绝对定位)-Stack Positioned"),
               onPressed: () {
                 Navigator.push(context, MaterialPageRoute(builder: (context) {
                   return StackWidget();
+                }));
+              },
+            ),
+            RaisedButton(
+              child: Text("对齐与相对定位-Align"),
+              onPressed: () {
+                Navigator.push(context, MaterialPageRoute(builder: (context) {
+                  return AlignWidget();
                 }));
               },
             ),
