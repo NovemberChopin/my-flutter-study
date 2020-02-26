@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter_demo/widgit/layout/flexAndExpanded.dart';
 import 'package:flutter_demo/widgit/layout/rowAndColum.dart';
+import 'package:flutter_demo/widgit/layout/stackAndPositioned.dart';
 import 'package:flutter_demo/widgit/layout/wrapAndFlow.dart';
 
 class LayoutWidget extends StatelessWidget {
@@ -53,6 +54,14 @@ class LayoutWidget extends StatelessWidget {
               onPressed: () {
                 Navigator.push(context, MaterialPageRoute(builder: (context) {
                   return FlowWidget();
+                }));
+              },
+            ),
+            RaisedButton(
+              child: Text("层叠布局-Stack Positioned"),
+              onPressed: () {
+                Navigator.push(context, MaterialPageRoute(builder: (context) {
+                  return StackWidget();
                 }));
               },
             ),
