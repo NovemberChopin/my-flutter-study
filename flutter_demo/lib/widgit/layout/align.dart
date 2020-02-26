@@ -19,7 +19,7 @@ class AlignWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    debugPaintSizeEnabled = true;
+    // debugPaintSizeEnabled = true;
     return Scaffold(
       appBar: AppBar(title: Text("Align对齐与相对定位"),),
       body: Column(

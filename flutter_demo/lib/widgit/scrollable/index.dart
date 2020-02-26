@@ -9,7 +9,7 @@ class ScrolableWidget extends StatefulWidget {
 
 class _ScrolableWidgetState extends State<ScrolableWidget> {
   int currentIndex = 0;
-  List bottomTabs = ["Single", "List", "Grid", "Custom"];
+  List bottomTabs = ["Single", "List", "Grid", "Custom", "Scroll"];
   List<Widget> list = List();
   @override
   void initState() {
@@ -28,6 +28,8 @@ class _ScrolableWidgetState extends State<ScrolableWidget> {
           BottomNavigationBarItem(icon: Icon(Icons.list), title: Text("List")),
           BottomNavigationBarItem(icon: Icon(Icons.grid_on), title: Text("Grid")),
           BottomNavigationBarItem(icon: Icon(Icons.person), title: Text("Custom")),
+          BottomNavigationBarItem(icon: Icon(Icons.scatter_plot), title: Text("Scroll")),
+
         ],
         onTap: (int index) {
           setState(() {

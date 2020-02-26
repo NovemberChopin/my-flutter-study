@@ -29,7 +29,7 @@ class WrapWidget extends StatelessWidget {
       body: ConstrainedBox(
         // Wrap 的最大宽度取决于所有元素的宽度，所以为了让其占用整个屏幕宽度
         // 使用 BoxConstrain 来限制
-        constraints: BoxConstraints(minWidth: double.infinity),
+        constraints: BoxConstraints(minWidth: double.infinity),  
         child: Wrap(
         // 主轴部件对齐方式
         alignment: WrapAlignment.spaceEvenly,
