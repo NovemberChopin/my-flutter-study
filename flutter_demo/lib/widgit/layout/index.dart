@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter_demo/widgit/layout/flexAndExpanded.dart';
 import 'package:flutter_demo/widgit/layout/rowAndColum.dart';
+import 'package:flutter_demo/widgit/layout/wrapAndFlow.dart';
 
 class LayoutWidget extends StatelessWidget {
   const LayoutWidget({Key key}) : super(key: key);
@@ -36,6 +37,22 @@ class LayoutWidget extends StatelessWidget {
               onPressed: () {
                 Navigator.push(context, MaterialPageRoute(builder: (context) {
                   return FlexWedgit();
+                }));
+              },
+            ),
+            RaisedButton(
+              child: Text("流式布局-Wrap"),
+              onPressed: () {
+                Navigator.push(context, MaterialPageRoute(builder: (context) {
+                  return WrapWidget();
+                }));
+              },
+            ),
+            RaisedButton(
+              child: Text("流式布局-Flow"),
+              onPressed: () {
+                Navigator.push(context, MaterialPageRoute(builder: (context) {
+                  return FlowWidget();
                 }));
               },
             ),
