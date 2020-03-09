@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_demo/widgit/scrollable/gridvied.dart';
+import 'package:flutter_demo/widgit/scrollable/list.dart';
 
 class ScrolableWidget extends StatefulWidget {
   ScrolableWidget({Key key}) : super(key: key);
@@ -9,11 +11,17 @@ class ScrolableWidget extends StatefulWidget {
 
 class _ScrolableWidgetState extends State<ScrolableWidget> {
   int currentIndex = 0;
-  List bottomTabs = ["Single", "List", "Grid", "Custom", "Scroll"];
+  List bottomTabs = ["SingleList", "List", "Grid", "Custom", "Scroll"];
   List<Widget> list = List();
   @override
   void initState() {
-    list = bottomTabs.map((e) => ScreenShow(text: e,)).toList();
+    list 
+      ..add(ListWidget())
+      ..add(InfiniteListView())
+      ..add(GridViewWidget())
+      ..add(InfiniteGridView())
+      ..add(ListWidget());
+    // list = bottomTabs.map((e) => ScreenShow(text: e,)).toList();
     super.initState();
   }
   @override
@@ -24,12 +32,11 @@ class _ScrolableWidgetState extends State<ScrolableWidget> {
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: currentIndex,
         items: [
-          BottomNavigationBarItem(icon: Icon(Icons.event_available), title: Text("Single")),
+          BottomNavigationBarItem(icon: Icon(Icons.event_available), title: Text("SingleList")),
           BottomNavigationBarItem(icon: Icon(Icons.list), title: Text("List")),
           BottomNavigationBarItem(icon: Icon(Icons.grid_on), title: Text("Grid")),
-          BottomNavigationBarItem(icon: Icon(Icons.person), title: Text("Custom")),
+          BottomNavigationBarItem(icon: Icon(Icons.person), title: Text("GridBuilder")),
           BottomNavigationBarItem(icon: Icon(Icons.scatter_plot), title: Text("Scroll")),
-
         ],
         onTap: (int index) {
           setState(() {

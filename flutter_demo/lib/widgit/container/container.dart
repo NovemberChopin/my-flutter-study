@@ -6,7 +6,7 @@ class ContainerDemo extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    debugPaintSizeEnabled = true;
+    // debugPaintSizeEnabled = true;
     return Column(
       // 在 Tab 页面中， 部件会居中显示并且试图占满整个屏幕
       crossAxisAlignment: CrossAxisAlignment.start,

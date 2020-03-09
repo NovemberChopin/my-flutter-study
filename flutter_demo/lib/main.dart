@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:flutter_demo/component/index.dart';
 
 import 'package:flutter_demo/component/nav_bottom.dart';
 import 'package:flutter_demo/widgit/container/index.dart';
@@ -33,6 +34,7 @@ class MyApp extends StatelessWidget {
         "layout": (context) => LayoutWidget(),
         "container": (context) => ContainerWidget(),
         "scrolable": (context) => ScrolableWidget(),
+        "component": (context) => ComponentDemo()
       },
     );
   }
@@ -47,6 +49,7 @@ const demoList = <String>[
   'layout',
   'container',
   'scrolable',
+  'component',
 ];
 const demoDecrible = <String>[
   "普通命名实例",
@@ -58,6 +61,7 @@ const demoDecrible = <String>[
   "布局组件",
   "容器类组件",
   "可滚动组件",
+  "功能组件",
 ]; 
 class ShowList extends StatelessWidget {
   const ShowList({Key key}) : super(key: key);
